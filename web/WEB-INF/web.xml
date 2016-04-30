@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    
+    <servlet>
+        <servlet-name>AllPost</servlet-name>
+        <servlet-class>Control.AllPost</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AllPost</servlet-name>
+        <url-pattern>/allpost</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>postControl</servlet-name>
+        <servlet-class>Control.PostControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>postControl</servlet-name>
+        <url-pattern>/post</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>userControl</servlet-name>
+        <servlet-class>Control.UserControl</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>userControl</servlet-name>
+        <url-pattern>/user</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>repeated</servlet-name>
+        <servlet-class>Control.repeated</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>repeated</servlet-name>
+        <url-pattern>/repeat</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>gaolinjie</servlet-name>
+        <servlet-class>gaolinjie</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>gaolinjie</servlet-name>
+        <url-pattern>/gaolinjie</url-pattern>
+    </servlet-mapping>
+    </web-app>
