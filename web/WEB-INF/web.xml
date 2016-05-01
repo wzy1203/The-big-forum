@@ -36,12 +36,4 @@
         <servlet-name>repeated</servlet-name>
         <url-pattern>/repeat</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>gaolinjie</servlet-name>
-        <servlet-class>gaolinjie</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>gaolinjie</servlet-name>
-        <url-pattern>/gaolinjie</url-pattern>
-    </servlet-mapping>
     </web-app>

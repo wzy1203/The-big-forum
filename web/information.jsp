@@ -67,16 +67,14 @@
     <div class="search-area container">
         <h3 class="search-header">比格论坛</h3>
         <p class="search-tag-line">民议世间百态 众说天下风云——精彩尽在 比格论坛</p>
-        <form id="search-form" class="search-form clearfix" method="get" action="../Search" autocomplete="off">
-            <input class="search-term required" type="text" id="search" name="search"
+        <form id="search-form" class="search-form clearfix" method="post" action="allpost?flag=search">
+            <input class="search-term required" type="text" id="keyword" name="keyword"
                    placeholder="search what you want" title="* Please enter a search term!"/>
             <input class="search-btn" type="submit" value="搜索"/>
             <div id="search-error-container"></div>
         </form>
     </div>
 </div>
-<!-- End of Search Wrapper -->
-
 <!-- Start of Page Container -->
 <div class="page-container">
     <div class="container">
@@ -96,19 +94,24 @@
                     <div class="tabs-container">
                         <div class="tab-content"><h3>个人信息</h3>
                             <%
-                                User user = (User)request.getAttribute("user");
+                                User user = (User) request.getAttribute("user");
                                 String username = user.getUsername();
                                 String sex = user.getSex();
                                 String brith = user.getBrith();
                                 String address = user.getAddress();
                                 String email = user.getEmail();
                             %>
-                            <h4>用户名 ：<input id="username" name="username" type="text" disabled="disabled" value="<%=username%>"></h4>
-                            <h4>性 别 ： <input id="sex" name="sex" type="text" disabled="disabled" value="<%=sex%>"></h4>
-                            <h4>生 日 ： <input id="brith" name="brith" type="text" disabled="disabled" value="<%=brith%>"></h4>
-                            <h4>地 区 ： <input id="address"name="address" type="text" disabled="disabled" value="<%=address%>" ></h4>
-                            <h4>e-mail ：<input id="email" name="email" type="text" disabled="disabled" value="<%=email%>"></h4>
-                            <input style="margin-left: 100px"  type="button" value="修改" id="changeInformation">
+                            <h4>用户名 ：<input id="username" name="username" type="text" disabled="disabled"
+                                            value="<%=username%>"></h4>
+                            <h4>性 别 ： <input id="sex" name="sex" type="text" disabled="disabled" value="<%=sex%>">(f/m)
+                            </h4>
+                            <h4>生 日 ： <input id="brith" name="brith" type="text" disabled="disabled" value="<%=brith%>">
+                            </h4>
+                            <h4>地 区 ： <input id="address" name="address" type="text" disabled="disabled"
+                                             value="<%=address%>"></h4>
+                            <h4>e-mail ：<input id="email" name="email" type="text" disabled="disabled"
+                                               value="<%=email%>"></h4>
+                            <input style="margin-left: 100px" type="button" value="修改" id="changeInformation">
                             <input type="button" value="保存" id="saveInformation" name="saveInformation">
                         </div>
 
@@ -467,14 +470,16 @@
                                         <label for="password">原密码<span>*</span> </label>
                                     </div>
                                     <div class="span6">
-                                        <input type="text" name="password" id="password" class="required input-xlarge" required="required">
+                                        <input type="text" name="password" id="password" class="required input-xlarge"
+                                               required="required">
                                         <span id="p1"></span>
                                     </div>
                                     <div class="span2">
                                         <label for="newPassword">新密码<span>*</span> </label>
                                     </div>
                                     <div class="span6">
-                                        <input type="text" name="newPassword" id="newPassword" class="required input-xlarge" required="required">
+                                        <input type="text" name="newPassword" id="newPassword"
+                                               class="required input-xlarge" required="required">
                                     </div>
                                     <div class="span2">
                                         <label for="confirmNewPassword">再次确认<span>*</span> </label>
@@ -484,7 +489,8 @@
                                                class="required input-xlarge" required="required">
                                     </div>
                                     <div class="span6 offset2 bm30">
-                                        <input type="submit" name="changeSubmit" id="changeSubmit" value="确认" class="btn btn-inverse" disabled="disabled">
+                                        <input type="submit" name="changeSubmit" id="changeSubmit" value="确认"
+                                               class="btn btn-inverse" disabled="disabled">
                                     </div>
                                     <div class="span6 offset2 error-container"></div>
                                     <div class="span8 offset2" id="message-sent"></div>
@@ -502,8 +508,8 @@
                         <ul id="menu-quick-links" class="menu clearfix">
                             <li><a href="post.jsp">发帖</a></li>
                             <li><a href="index.jsp">主页</a></li>
-                            <li><a href="articles-list.jsp">所有帖子</a></li>
-                            <li><a href="faq.jsp">个人中心</a></li>
+                            <li><a href="../allpost">所有帖子</a></li>
+                            <li><a href="information.jsp">个人中心</a></li>
                             <li><a href="contact.jsp">联系我们</a></li>
                         </ul>
                     </div>

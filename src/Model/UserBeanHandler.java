@@ -162,12 +162,13 @@ public class UserBeanHandler {
             ps.setString(1, username);
             rs = ps.executeQuery();
             while (rs.next()) {
-                sql = ("update user set sex=? , brith=? , address=? , email=?");
+                sql = ("update user set sex=? , brith=? , address=? , email=? WHERE username=?");
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, sex);
                 ps.setString(2, brith);
                 ps.setString(3, address);
                 ps.setString(4, email);
+                ps.setString(5,username);
                 flag = ps.execute();
                 System.out.println(username + sex + brith + address + email);
             }

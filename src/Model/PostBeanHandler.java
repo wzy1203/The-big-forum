@@ -52,16 +52,16 @@ public class PostBeanHandler {
         return flag;
     }
 
-    public ArrayList getPosts(int pageNow){
+    public ArrayList getPosts(int pageNow) {
         ArrayList posts = new ArrayList();
         Connection conn = DB.Conn();
         ResultSet rs = null;
-        String sql = ("select * from post limit "+5*(pageNow-1)+",5");
+        String sql = ("select * from post limit " + 5 * (pageNow - 1) + ",5");
         String sql1 = ("select (*) from post");
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Post post = new Post();
                 post.setId(rs.getInt(1));
                 post.setType(rs.getString(2));
@@ -77,19 +77,54 @@ public class PostBeanHandler {
         return posts;
     }
 
-    public int getPostNumber(){
+    public int getPostNumber() {
         String sql = ("select count(*) from post");
         Connection conn = DB.Conn();
         int postNumber = 0;
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 postNumber = rs.getInt(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return postNumber;
+    }
+
+    public ArrayList searchPosts(String keyword) {
+        Connection conn = DB.Conn();
+        PreparedStatement ps;
+        ResultSet rs;
+        ArrayList searchPostsList = new ArrayList();
+        String sql = "select * from post where content like '%"+keyword+"%'";
+        try {
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Post post = new Post();
+                post.setId(rs.getInt(1));
+                post.setType(rs.getString(2));
+                post.setTime(rs.getString(3));
+                post.setTitle(rs.getString(4));
+                post.setContent(rs.getString(5));
+                post.setUsername(rs.getString(6));
+                searchPostsList.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return searchPostsList;
+    }
+
+    public ArrayList getSearchPosts(int pageNow, ArrayList searchAllPosts) {
+        ArrayList searchPosts = new ArrayList();
+        int i = (pageNow - 1) * 5;
+        for(int j=i;j<5&&j<searchAllPosts.size();j++){
+            searchPosts.add(searchAllPosts.get(j));
+        }
+
+        return searchPosts;
     }
 }

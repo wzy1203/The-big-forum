@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en-US"> <!--<![endif]-->
 <head>
-    <% if(session.getAttribute("user")==null){
+    <% if (session.getAttribute("user") == null) {
         response.sendRedirect("login.jsp");
     }
     %>
@@ -12,9 +12,12 @@
     <link rel="shortcut icon" href="main/images/favicon.png"/>
     <!-- Style Sheet-->
     <link rel="stylesheet" href="style.css"/>
-    <link rel='stylesheet' id='bootstrap-css-css' href='main/css/bootstrap5152.css?ver=1.0' type='text/css' media='all'/>
-    <link rel='stylesheet' id='responsive-css-css' href='main/css/responsive5152.css?ver=1.0' type='text/css' media='all'/>
-    <link rel='stylesheet' id='pretty-photo-css-css' href='main/js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4' type='text/css'
+    <link rel='stylesheet' id='bootstrap-css-css' href='main/css/bootstrap5152.css?ver=1.0' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='responsive-css-css' href='main/css/responsive5152.css?ver=1.0' type='text/css'
+          media='all'/>
+    <link rel='stylesheet' id='pretty-photo-css-css' href='main/js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4'
+          type='text/css'
           media='all'/>
     <link rel='stylesheet' id='main-css-css' href='main/css/main5152.css?ver=1.0' type='text/css' media='all'/>
     <link rel='stylesheet' id='custom-css-css' href='main/css/custom5152.html?ver=1.0' type='text/css' media='all'/>
@@ -35,11 +38,14 @@
                             <li class="current-menu-item"><a href="post.jsp">发帖</a></li>
                             <li><a href="articles-list.jsp">所有帖子</a></li>
                             <li><a href="contact.jsp">联系我们</a></li>
-                            <% if (session.getAttribute("user")==null) {%>
+                            <% if (session.getAttribute("user") == null) {%>
                             <li><a href="login/login.html">登陆/注册</a></li>
-                            <%}else{
-                                String username = (String)session.getAttribute("user");%>
-                            <li><a href="user?flag=message"><%=username%></a></li>
+                            <%
+                            } else {
+                                String username = (String) session.getAttribute("user");
+                            %>
+                            <li><a href="user?flag=message"><%=username%>
+                            </a></li>
                             <%}%>
                         </ul>
                     </div>
@@ -53,8 +59,8 @@
     <div class="search-area container">
         <h3 class="search-header">比格论坛</h3>
         <p class="search-tag-line">民议世间百态 众说天下风云——精彩尽在 比格论坛</p>
-        <form id="search-form" class="search-form clearfix" method="get" action="../Search" autocomplete="off">
-            <input class="search-term required" type="text" id="search" name="search"
+        <form id="search-form" class="search-form clearfix" method="post" action="allpost?flag=search">
+            <input class="search-term required" type="text" id="keyword" name="keyword"
                    placeholder="search what you want" title="* Please enter a search term!"/>
             <input class="search-btn" type="submit" value="搜索"/>
             <div id="search-error-container"></div>
@@ -85,18 +91,19 @@
                     <div class="span6">
                         <!--<input type="text" name="reason" id="reason" class="input-xlarge" value="">-->
                         <select id="type" name="type">
-                            <option >娱乐</option>
-                            <option >新闻</option>
-                            <option >体育</option>
-                            <option >健康</option>
-                            <option >其他</option>
+                            <option>娱乐</option>
+                            <option>新闻</option>
+                            <option>体育</option>
+                            <option>健康</option>
+                            <option>其他</option>
                         </select>
                     </div>
                     <div class="span2">
                         <label for="content">内容<span>*</span> </label>
                     </div>
                     <div class="span6">
-                        <textarea name="content" id="content" class="required span6" rows="6" title="* Please enter your message"></textarea>
+                        <textarea name="content" id="content" class="required span6" rows="6"
+                                  title="* Please enter your message"></textarea>
                     </div>
                     <div class="span6 offset2 bm30">
                         <input type="submit" name="submit" value="发表" class="btn btn-inverse">
@@ -117,7 +124,7 @@
                             <li><a href="post.jsp">发帖</a></li>
                             <li><a href="index.jsp">主页</a></li>
                             <li><a href="../allpost">所有帖子</a></li>
-                            <li><a href="faq.jsp">个人中心</a></li>
+                            <li><a href="information.jsp">个人中心</a></li>
                             <li><a href="contact.jsp">联系我们</a></li>
                         </ul>
                     </div>

@@ -53,15 +53,14 @@
     <div class="search-area container">
         <h3 class="search-header">比格论坛</h3>
         <p class="search-tag-line">民议世间百态 众说天下风云——精彩尽在 比格论坛</p>
-        <form id="search-form" class="search-form clearfix" method="get" action="../Search" autocomplete="off">
-            <input class="search-term required" type="text" id="search" name="search"
+        <form id="search-form" class="search-form clearfix" method="post" action="allpost?flag=search">
+            <input class="search-term required" type="text" id="keyword" name="keyword"
                    placeholder="search what you want" title="* Please enter a search term!"/>
             <input class="search-btn" type="submit" value="搜索"/>
             <div id="search-error-container"></div>
         </form>
     </div>
 </div>
-
 <!-- Start of Page Container -->
 <div class="page-container">
     <div class="container">
@@ -77,7 +76,8 @@
                         <label for="advice">意见反馈<span>*</span> </label>
                     </div>
                     <div class="span6">
-                        <textarea name="advice" id="advice" class="required span6" rows="6" title="* Please enter your message"></textarea>
+                        <textarea name="advice" id="advice" class="required span6" rows="6"
+                                  title="* Please enter your message"></textarea>
                     </div>
                     <div class="span6 offset2 bm30">
                         <input type="submit" name="adviceSubmit" value="发送" class="btn btn-inverse">
@@ -95,8 +95,8 @@
                         <ul id="menu-quick-links" class="menu clearfix">
                             <li><a href="post.jsp">发帖</a></li>
                             <li><a href="index.jsp">主页</a></li>
-                            <li><a href="articles-list.jsp">所有帖子</a></li>
-                            <li><a href="faq.jsp">个人中心</a></li>
+                            <li><a href="../allpost">所有帖子</a></li>
+                            <li><a href="information.jsp">个人中心</a></li>
                             <li><a href="contact.jsp">联系我们</a></li>
                         </ul>
                     </div>

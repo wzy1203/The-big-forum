@@ -26,6 +26,7 @@
         Integer postNumber = (Integer) request.getAttribute("postNumber");
         int pageNumber = (postNumber.intValue() / 5);
         int pagelast = (postNumber.intValue() % 5);
+        String url = (String)request.getAttribute("url");
     %>
 </head>
 <body>
@@ -58,14 +59,14 @@
     </header>
 </div>
 <!-- End of Header -->
-<!-- Start of Search Wrapper -->
+<!-- 网页大标题和搜索栏 -->
 <div class="search-area-wrapper">
     <div class="search-area container">
         <h3 class="search-header">比格论坛</h3>
         <p class="search-tag-line">民议世间百态 众说天下风云——精彩尽在 比格论坛</p>
-        <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off">
-            <input class="search-term required" type="text" id="s" name="s" placeholder="Type your search terms here"
-                   title="* Please enter a search term!"/>
+        <form id="search-form" class="search-form clearfix" method="post" action="allpost?flag=search">
+            <input class="search-term required" type="text" id="keyword" name="keyword"
+                   placeholder="search what you want" title="* Please enter a search term!"/>
             <input class="search-btn" type="submit" value="搜索"/>
             <div id="search-error-container"></div>
         </form>
@@ -115,10 +116,10 @@
                 <div id="pagination">
                     <a class="btn active"><%=pageNow%>
                     </a>
-                    <% String secondPage = "../allpost?pageNow=" + pageSecond;
-                        String thirdPage = "../allpost?pageNow=" + pageThird;
-                        String up = "../allpost?pageNow=" + (pageNow - 1);
-                        String next = "../allpost?pageNow=" + (pageNow + 1);
+                    <% String secondPage = "../allpost?pageNow=" + pageSecond+"&flag="+url;
+                        String thirdPage = "../allpost?pageNow=" + pageThird+"&flag="+url;
+                        String up = "../allpost?pageNow=" + (pageNow - 1)+"&flag="+url;
+                        String next = "../allpost?pageNow=" + (pageNow + 1)+"&flag="+url;
                         if (pageNow == pageNumber && pagelast == 0) {
                         } else if (pageNow > pageNumber) {
                         } else {%>
@@ -158,8 +159,8 @@
                         <ul id="menu-quick-links" class="menu clearfix">
                             <li><a href="post.jsp">发帖</a></li>
                             <li><a href="index.jsp">主页</a></li>
-                            <li><a href="articles-list.jsp">所有帖子</a></li>
-                            <li><a href="faq.jsp">个人中心</a></li>
+                            <li><a href="../allpost">所有帖子</a></li>
+                            <li><a href="information.jsp">个人中心</a></li>
                             <li><a href="contact.jsp">联系我们</a></li>
                         </ul>
                     </div>
