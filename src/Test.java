@@ -1,39 +1,26 @@
-import Model.Post;
 import utils.DB;
-import java.sql.*;
-import java.util.ArrayList;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
- * Created by killeryuan on 2016/4/13.
+ * Created by killeryuan on 2016/5/1.
  */
-public class Test {
-    public static void main(String[] args) {
-        Connection conn = DB.Conn();
-        PreparedStatement ps;
-        ResultSet rs;
-        ArrayList searchPostsList = new ArrayList();
+public class test {
 
-        String sql = "select * from post where title like '%¾©¾ç%' ";
-
+    public static void main(String args[]){
         try {
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                Post post = new Post();
-                System.out.println(rs.getString(5));
-                post.setId(rs.getInt(1));
-                post.setType(rs.getString(2));
-                post.setTime(rs.getString(3));
-                post.setTitle(rs.getString(4));
-                post.setContent(rs.getString(5));
-                post.setUsername(rs.getString(6));
-                searchPostsList.add(post);
-
-
+            Connection conn = DB.Conn();
+            String sql = "SELECT * FROM post WHERE title LIKE  '%¿Æ±È%'";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                System.out.println(rs.getInt(1));
             }
-        } catch (SQLException e) {
+        }catch (SQLException e){
             e.printStackTrace();
         }
-
     }
 }

@@ -1,9 +1,9 @@
 package Model;
 
+import utils.DB;
+
 import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
-
-import utils.DB;
 
 /**
  * Created by killeryuan on 2016/4/7.
@@ -79,19 +79,19 @@ public class UserBeanHandler {
                     user.setUsername(rs.getString(2));
                 }
                 if (rs.getString(3) != null) {
-                    user.setPassword(rs.getString(2));
+                    user.setPassword(rs.getString(3));
                 }
                 if (rs.getString(4) != null) {
-                    user.setEmail(rs.getString(2));
+                    user.setEmail(rs.getString(4));
                 }
                 if (rs.getString(5) != null) {
-                    user.setBrith(rs.getString(2));
+                    user.setBrith(rs.getString(5));
                 }
                 if (rs.getString(6) != null) {
-                    user.setAddress(rs.getString(2));
+                    user.setAddress(rs.getString(6));
                 }
                 if (rs.getString(7) != null) {
-                    user.setSex(rs.getString(2));
+                    user.setSex(rs.getString(7));
                 }
             }
         } catch (SQLException e) {
@@ -137,9 +137,10 @@ public class UserBeanHandler {
             pr.setString(1, username);
             rs = pr.executeQuery();
             while (rs.next()) {
-                sql = ("update user set password = ?");
+                sql = ("update user set password = ? WHERE username = ?");
                 pr = conn.prepareStatement(sql);
                 pr.setString(1, newPassword);
+                pr.setString(2,username);
                 pr.execute();
                 flag = true;
             }
@@ -155,22 +156,21 @@ public class UserBeanHandler {
         Connection conn = DB.Conn();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        System.out.println(username + sex + brith + address + email);
+       // System.out.println(username + sex + brith + address + email);
         try {
             String sql = ("SELECT * FROM user WHERE username=?");
             ps = conn.prepareStatement(sql);
             ps.setString(1, username);
             rs = ps.executeQuery();
             while (rs.next()) {
-                sql = ("update user set sex=? , brith=? , address=? , email=? WHERE username=?");
+                sql = ("update user  set sex=? , brith=? , address=? , email=? WHERE  username ='"+username+"'");
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, sex);
                 ps.setString(2, brith);
                 ps.setString(3, address);
                 ps.setString(4, email);
-                ps.setString(5,username);
                 flag = ps.execute();
-                System.out.println(username + sex + brith + address + email);
+               // System.out.println(username + sex + brith + address + email);
             }
 
         } catch (SQLException e) {
